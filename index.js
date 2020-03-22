@@ -20,7 +20,7 @@ fs.readFile('credentials.json', (err, content) => {
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
  * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
+ * @param {function} callback The callback to call with the authorized client..0
  */
 function authorize(credentials, callback) {
   const {client_secret, client_id, redirect_uris} = credentials.installed;
