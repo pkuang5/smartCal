@@ -1,8 +1,12 @@
 const fs = require('fs');
 const {google} = require('googleapis');
-var {redirectURL, client} = require('../model/modelAttributes')
 
 class googleLoginController {
+
+    constructor(){
+        this.client;
+        this.redirectURL;
+    }
 
     setOAuth2Client(credentialPath){
         fs.readFile(credentialPath, (err, content) => {
@@ -10,8 +14,13 @@ class googleLoginController {
             // Authorize a client with credentials, then call the Google Calendar API.
             let credentials = JSON.parse(content);
             const {client_secret, client_id, redirect_uris} = credentials.installed;
-            client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+            this.client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
           });
+          console.log(this.client);
+    }
+
+    client(){
+        return this.client;
     }
 
     setRedirectURL(oAuth2Client, scopeURL){
